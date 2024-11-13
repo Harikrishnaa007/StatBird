@@ -37,3 +37,9 @@ app.register_blueprint(unfollow_bp, url_prefix='/unfollow') # Register unfollow 
 app.register_blueprint(retweet_bp, url_prefix='/retweet') # Register retweet blueprint
 app.register_blueprint(tsearch_bp,url_prefix='/tsearch') # Register tsearch blueprint
 app.register_blueprint(followgp_bp,url_prefix='/followgp') #Register followgp blueprint
+
+# Empty favicon route to prevent 404 errors
+@app.route('/favicon.ico')
+def favicon():
+    return "", 204  # Return an empty response with a 204 No Content status
+
