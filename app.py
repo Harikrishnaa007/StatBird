@@ -51,5 +51,11 @@ def home():
         return redirect(url_for('dashboard.dashboard'))  # Redirect to dashboard if logged in
     return redirect(url_for('auth.home'))  # Redirect to login page if not logged in
 
+# Empty favicon route to prevent 404 errors
+@app.route('/favicon.ico')
+def favicon():
+    return "", 204  # Return an empty response with a 204 No Content status
+
+
 if __name__ == "__main__":
     app.run(debug=True)
