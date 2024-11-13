@@ -9,6 +9,8 @@ load_dotenv()
 
 # Initialize the Flask app
 app = Flask(__name__)
+app.secret_key = os.urandom(24)  # For session management
+
 
 # Initialize MongoDB client
 mongo_uri = os.getenv("MONGO_URI")
