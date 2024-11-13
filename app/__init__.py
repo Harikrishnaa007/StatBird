@@ -5,6 +5,8 @@ from flask import Flask, redirect, url_for,session
 from pymongo import MongoClient
 from dotenv import load_dotenv
 
+load_dotenv()
+
 # Initialize the Flask app
 app = Flask(__name__)
 
