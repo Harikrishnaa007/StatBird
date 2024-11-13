@@ -1,6 +1,6 @@
 import tweepy
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the function to get the MongoDB collection
 
 # Define the 'unfollow' blueprint
 unfollow_bp = Blueprint('unfollow', __name__)
@@ -51,7 +51,7 @@ def unfollow():
         return redirect(url_for('auth.login'))
 
     username = session['user']
-    user_data = collection.find_one({"username": username})
+    user_data = get_collection().find_one({"username": username})  # Access MongoDB collection via get_collection
 
     if request.method == 'POST':
         target_username = request.form['target_username']
@@ -72,4 +72,3 @@ def unfollow():
     
     # Render the page for GET requests (initial form)
     return render_template('unfollow.html')
-
