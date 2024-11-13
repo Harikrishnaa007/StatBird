@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from app import collection  # Import the MongoDB collection from app.py
+from temp import collection  # Import the MongoDB collection from app.py
 from dotenv import load_dotenv
 import tweepy
 from werkzeug.security import generate_password_hash, check_password_hash  # For password hashing
