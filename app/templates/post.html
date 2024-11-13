@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Tweet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        .sidebar .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .header {
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container textarea, .form-container button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .form-container button {
+            background-color: #1da1f2;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #0d85d3;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Action Box Styles */
+        .action-box {
+            width: 150px;
+            height: 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .action-box:hover {
+            transform: scale(1.05);
+        }
+
+        .action-box p {
+            font-size: 16px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .action-box button {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-box button:hover {
+            background-color: #005bb5;
+        }
+
+        .action-box.post {
+            background-color: #1da1f2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard.dashboard') }}">
+                <i class="fas fa-home icon"></i> Dashboard
+            </a>
+            <a href="{{ url_for('news.news_dashboard') }}">
+                <i class="fas fa-newspaper icon"></i> News
+            </a>
+            <a href="{{ url_for('usearch.usearch') }}">
+                <i class="fas fa-search icon"></i> User Search
+            </a>
+            <a href="{{ url_for('tsearch.tsearch_view') }}">
+                <i class="fas fa-search icon"></i> Tweet Search
+            </a>
+            <a href="{{ url_for('gendergp.gender_distribution') }}">
+                <i class="fas fa-users icon"></i> Gender Distribution
+            </a>
+            <a href="{{ url_for('auth.logout') }}">
+                <i class="fas fa-sign-out-alt icon"></i> Logout
+            </a>
+            <a href="{{ url_for('general.general_page') }}">
+                <i class="fas fa-cogs icon"></i> General
+            </a>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="header">
+            Post Tweet
+        </div>
+
+        <!-- Action Box for Post Tweet -->
+        <div class="container">
+            <div class="action-box post">
+                <p>Post Tweet</p>
+                <a href="{{ url_for('post.post') }}"><button>Post Tweet</button></a>
+            </div>
+        </div>
+
+        <!-- Post Tweet Form -->
+        <div class="form-container">
+            <form method="POST">
+                <label for="tweet_text">Tweet Text</label>
+                <textarea name="tweet_text" id="tweet_text" rows="5" placeholder="What's happening?" required></textarea>
+
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+
+                <button type="submit">Post Tweet</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

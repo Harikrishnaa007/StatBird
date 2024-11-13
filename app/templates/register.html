@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .flashes {
+            list-style-type: none;
+            padding: 0;
+        }
+        .flashes li {
+            background-color: #f8d7da;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: #721c24;
+        }
+        .flashes li.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .flashes li.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Register</h1>
+
+        <!-- Display Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('auth.register') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="bearer_token">Bearer Token (v2):</label>
+                <input type="text" name="bearer_token" id="bearer_token" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="tuser">Twitter User Name:</label>
+                <input type="text" name="tuser" id="tuser" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="access_t">Access Token:</label>
+                <input type="text" name="access_t" id="access_t" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="access_tsec">Access Token Secret:</label>
+                <input type="text" name="access_tsec" id="access_tsec" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="api_key">API Key:</label>
+                <input type="text" name="api_key" id="api_key" required><br>
+            </div>
+
+            <div class="form-group">
+                <label for="api_keysec">API Secret Key:</label>
+                <input type="text" name="api_keysec" id="api_keysec" required><br>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Data from MongoDB</title>
+</head>
+<body>
+    <h1>Data from MongoDB</h1>
+    
+    {% if documents %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in documents %}
+                    <tr>
+                        <td>{{ doc.username }}</td>
+                        <td>{{ doc.password }}</td>
+                        <td>{{ doc.email }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No data found!</p>
+    {% endif %}
+    
+    <!-- Navigation Links -->
+    <a href="/document_count">Back to Document Count</a><br>
+    <a href="/">Go back to Add Data</a>
+</body>
+</html>

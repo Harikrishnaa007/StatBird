@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Count</title>
+</head>
+<body>
+    <h1>MongoDB Document Count</h1>
+    
+    <!-- Display the number of documents -->
+    <p>Total number of documents: {{ count }}</p>
+    
+    <!-- Display success or error messages -->
+    {% if success_message %}
+        <p style="color: green;">{{ success_message }}</p>
+    {% elif error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    
+    <!-- Navigation Links -->
+    <a href="/view_data">View Data</a><br>
+    <a href="/">Go back to Add Data</a>
+</body>
+</html>
