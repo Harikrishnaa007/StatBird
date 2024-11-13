@@ -1,7 +1,7 @@
 import tweepy
 import requests  # To handle URL expansion
 from flask import Blueprint, render_template, session, redirect, url_for
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the function to get the MongoDB collection
 
 # Define the 'news' blueprint
 news_bp = Blueprint('news', __name__)
@@ -78,7 +78,7 @@ def news_dashboard():
         return redirect(url_for('auth.login'))  # Redirect to login if not logged in
 
     username = session['user']
-    user_data = collection.find_one({"username": username})
+    user_data = get_collection().find_one({"username": username})  # Use get_collection() for MongoDB query
 
     # Fetch news-related tweets using the user's Bearer Token
     tweets = get_trending_news_tweets(user_data)
