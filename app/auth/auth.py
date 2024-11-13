@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from temp import collection  # Import the MongoDB collection from app.py
+from app.db import get_collection  # Import the MongoDB collection function
 from dotenv import load_dotenv
 import tweepy
 from werkzeug.security import generate_password_hash, check_password_hash  # For password hashing
@@ -20,6 +20,7 @@ def home():
 # Route to register
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
+    collection = get_collection()  # Get the MongoDB collection
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -63,6 +64,7 @@ def register():
 # Route to login
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    collection = get_collection()  # Get the MongoDB collection
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -88,6 +90,7 @@ def logout():
 
 # Function to get authenticated Tweepy API client using stored credentials
 def get_twitter_api():
+    collection = get_collection()  # Get the MongoDB collection
     user = collection.find_one({"username": session.get('user')})
     if user:
         auth = tweepy.OAuth1UserHandler(
