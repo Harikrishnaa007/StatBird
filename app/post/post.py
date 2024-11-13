@@ -1,6 +1,6 @@
 import tweepy
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the function to get the MongoDB collection
 
 # Define the 'post' blueprint
 post_bp = Blueprint('post', __name__)
@@ -47,7 +47,7 @@ def post():
         return redirect(url_for('auth.login'))
 
     username = session['user']
-    user_data = collection.find_one({"username": username})
+    user_data = get_collection().find_one({"username": username})  # Access MongoDB collection via get_collection
 
     if request.method == 'POST':
         tweet_text = request.form['tweet_text']
