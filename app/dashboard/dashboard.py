@@ -1,6 +1,6 @@
 import tweepy
 from flask import Blueprint, render_template, session, redirect, url_for
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the function to get the MongoDB collection
 
 # Define the 'dashboard' blueprint
 dashboard_bp = Blueprint('dashboard', __name__)
@@ -32,7 +32,7 @@ def dashboard():
         return redirect(url_for('auth.login'))  # Redirect to login if not logged in
 
     username = session['user']
-    user_data = collection.find_one({"username": username})
+    user_data = get_collection().find_one({"username": username})  # Use get_collection to get MongoDB collection
 
     # Extract user information from MongoDB
     user_info = {
