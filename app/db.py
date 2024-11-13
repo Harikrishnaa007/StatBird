@@ -13,4 +13,4 @@ client = MongoClient(mongo_uri)
 db = client["Statbird"]
 
 def get_collection():
-    return db["your_collection_name"]  # Modify this to your collection name
+    return db["V1"]  # Modify this to your collection name
