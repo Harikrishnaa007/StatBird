@@ -1,6 +1,6 @@
 import tweepy
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the MongoDB collection
 
 # Define the 'followgp' blueprint
 followgp_bp = Blueprint('followgp', __name__)
@@ -34,6 +34,11 @@ def followgp():
 
     # Get the current logged-in user's username from session
     username = session['user']
+
+    # Retrieve the collection from db
+    collection = get_collection()
+
+    # Fetch user data from MongoDB collection
     user_data = collection.find_one({"username": username})
 
     # Extract user information from MongoDB
@@ -62,7 +67,7 @@ def followgp():
                 # If no data found, flash a message (optional, for better UX)
                 if followers_count is None or following_count is None:
                     flash('Could not fetch data for the specified Twitter username. Please try again.', 'danger')
-    print(followers_count,following_count)
+
     # Pass the data to the template for rendering
     return render_template(
         'followgp.html',
