@@ -1,6 +1,6 @@
 import tweepy
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the function to get the MongoDB collection
 
 # Define the 'retweet' blueprint
 retweet_bp = Blueprint('retweet', __name__)
@@ -49,7 +49,7 @@ def retweet_view():
         return redirect(url_for('auth.login'))
 
     username = session['user']
-    user_data = collection.find_one({"username": username})
+    user_data = get_collection().find_one({"username": username})  # Access MongoDB collection via get_collection
 
     if not user_data:
         return redirect(url_for('auth.login'))  # Ensure user data is valid
