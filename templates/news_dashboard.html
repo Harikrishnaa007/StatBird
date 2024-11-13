@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- FontAwesome Icons -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            color: #fff;
+            height: 100vh;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .tweet-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tweet-box .author {
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .retweet {
+            font-style: italic;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Navigation</h2>
+            <a href="{{ url_for('dashboard.dashboard') }}">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('news.news_dashboard') }}">
+                <i class="fas fa-newspaper"></i> News
+            </a>
+            <a href="{{ url_for('usearch.usearch') }}">
+                <i class="fas fa-search"></i> User Search
+            </a>
+            <a href="{{ url_for('tsearch.tsearch_view') }}">
+                <i class="fas fa-search icon"></i> Tweet Search
+            </a>
+            <a href="{{ url_for('gendergp.gender_distribution') }}">
+                <i class="fas fa-users icon"></i> Gender Distribution
+            </a>
+            <a href="{{ url_for('auth.logout') }}">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+            <!-- General Link -->
+            <a href="{{ url_for('general.general_page') }}">
+                <i class="fas fa-cogs"></i> General
+            </a>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <h1>Welcome, {{ user_data['username'] }}!</h1>
+            <h2>Your Recent News Tweets:</h2>
+
+            {% if tweets %}
+                <div class="tweets-container">
+                    {% for tweet in tweets %}
+                        <div class="tweet-box">
+                            <p class="author">@{{ tweet.author_username }}:</p>
+                            {% if tweet.is_retweet %}
+                                <p class="retweet">Retweeted:</p>
+                            {% endif %}
+                            <p>{{ tweet.text }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No tweets found or there was an error fetching tweets.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

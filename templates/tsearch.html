@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweet Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        .sidebar .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .header {
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .form-container button {
+            background-color: #e74c3c;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #c0392b;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .results-container {
+            margin-top: 20px;
+        }
+
+        .results-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .results-container li {
+            background-color: #ecf0f1;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard.dashboard') }}">
+                <i class="fas fa-home icon"></i> Dashboard
+            </a>
+            <a href="{{ url_for('news.news_dashboard') }}">
+                <i class="fas fa-newspaper icon"></i> News
+            </a>
+            <a href="{{ url_for('usearch.usearch') }}">
+                <i class="fas fa-search icon"></i> User Search
+            </a>
+            <a href="{{ url_for('tsearch.tsearch_view') }}">
+                <i class="fas fa-search icon"></i> Tweet Search
+            </a>
+            <a href="{{ url_for('gendergp.gender_distribution') }}">
+                <i class="fas fa-users icon"></i> Gender Distribution
+            </a>
+            <a href="{{ url_for('auth.logout') }}">
+                <i class="fas fa-sign-out-alt icon"></i> Logout
+            </a>
+            <a href="{{ url_for('general.general_page') }}">
+                <i class="fas fa-cogs icon"></i> General
+            </a>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="header">
+            Search Tweets
+        </div>
+
+        <!-- Tweet Search Form -->
+        <div class="form-container">
+            <form method="POST">
+                <label for="query">Enter keywords to search tweets:</label>
+                <input type="text" id="query" name="query" required>
+
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        {% if tweets %}
+        <div class="results-container">
+            <h2>Search Results:</h2>
+            <ul>
+                {% for tweet in tweets %}
+                    <li>
+                        <strong>{{ tweet.author_username }}</strong>: {{ tweet.text }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% elif not tweets and error %}
+        <div class="results-container">
+            <p class="error">{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

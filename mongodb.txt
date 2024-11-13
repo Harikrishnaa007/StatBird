@@ -1,0 +1,57 @@
+Store your database authentication access details in a secure location:
+Database User Username: Cluster40992
+Database User Password: XGVqeXVScHFK
+
+
+Public Key: nrdshldu
+Private Key: 8d9119a4-a346-4e70-b2e7-9e085c901366
+
+
+
+mongodb+srv://Cluster40992:XGVqeXVScHFK@cluster40992.k4zer.mongodb.net/?retryWrites=true&w=majority&appName=Cluster40992
+
+API Key
+hqLjfNjaTMrTkYJ2dripnhEbP
+
+API Key Secret
+tL1orsGtVigdU0nzaA8AbZ81ZqBEQKGQvj9UQR5HPKEqJYpMQg
+
+Accesstoken
+2322389574-6Vicbcw6XGKGyzm1mftSGh0O9a1kGOcNBy0jkh9
+
+Access Token Secret
+ZNBOG4DgVW2l0HVfCwafl8o5g2N8l5BC34KASaeHKXcsW
+
+Bearer Token
+AAAAAAAAAAAAAAAAAAAAAGVMwAEAAAAA8AsTDZAtgBSOsH0CKCPoroQM7yw%3DGkxR3mlzLieVCZBTGQdxOJJez558F3f8au1VRCD3VQSsyquuVt
+
+Client ID
+NnJ4TzZ3RGEteHA4Vmc5dG04dXI6MTpjaQ
+
+Client Secret
+Fkpe0es9zxGc4dCvKDixCS3s_GUvCz_3EetDqZMsrKZL3rHQcW
+
+
+
+Shivii
+
+API Key
+9ezR5Rvzsf8m7eujF8vDQ4qu8
+
+API Key Secret
+83tklYrYOIbbi74KVtgt67cRHqwmMBrHsX19tRRUbP7pAGUWag
+
+Bearer Token
+AAAAAAAAAAAAAAAAAAAAAHy5wwEAAAAAk9967VW5CU6SLT92p0QED%2FmRnMg%3DaGrXBotSfsGsCoBb8wOyWOfnvRkJGjI8ZdTQBcqSUI9ncuyMt7
+
+Access Token
+1855981040848052224-zHdjLhMIL5fGydjdncKFXEySFPh0Vk
+
+Access Token Secret
+VcoDx7yBO47GQxywfHdwN0nbtj10HoRbrQips9jpZtVrB
+
+Client ID
+R0hBYUM2NWdSbkh1MjNpX3B5RF86MTpjaQ
+
+Client Secret
+tqpHxQGJqOccoD9RoE7vrBLgwt_ObD4NEUL2sPjBOXWsC-uuaO

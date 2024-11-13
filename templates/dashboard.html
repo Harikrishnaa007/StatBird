@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Add Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        .sidebar .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .user-info {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .user-info p {
+            font-size: 18px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard.dashboard') }}">
+                <i class="fas fa-home icon"></i> Dashboard
+            </a>
+            <a href="{{ url_for('news.news_dashboard') }}">
+                <i class="fas fa-newspaper icon"></i> News
+            </a>
+            <a href="{{ url_for('usearch.usearch') }}">
+                <i class="fas fa-search icon"></i> User Search
+            </a>
+            <a href="{{ url_for('tsearch.tsearch_view') }}">
+                <i class="fas fa-search icon"></i> Tweet Search
+            </a>
+            <a href="{{ url_for('followgp.followgp') }}">
+                <i class="fas fa-users icon"></i> Follow Distribution
+            </a>
+            <a href="{{ url_for('auth.logout') }}">
+                <i class="fas fa-sign-out-alt icon"></i> Logout
+            </a>
+            <!-- General Link -->
+            <a href="{{ url_for('general.general_page') }}">
+                <i class="fas fa-cogs icon"></i> General
+            </a>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="user-info">
+            <h3>User Info</h3>
+            {% if user_info['profile_image_url'] %}
+                <img src="{{ user_info['profile_image_url'] }}" alt="Profile Image" class="profile-image">
+            {% else %}
+                <!-- Placeholder Image -->
+                <img src="https://via.placeholder.com/100" alt="Default Profile Image" class="profile-image">
+            {% endif %}
+            <p><strong>Username:</strong> {{ user_info['username'] }}</p>
+            <p><strong>Email:</strong> {{ user_info['email'] }}</p>
+            <p><strong>Followers:</strong> {{ user_info['followers_count'] }}</p>
+            <p><strong>Following:</strong> {{ user_info['following_count'] }}</p>
+            <p><strong>Verified:</strong> {{ user_info['verified'] }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
