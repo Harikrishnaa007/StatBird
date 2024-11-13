@@ -1,6 +1,6 @@
 import tweepy
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the function to get the MongoDB collection
 
 # Define the 'usearch' blueprint
 usearch_bp = Blueprint('usearch', __name__)
@@ -28,7 +28,7 @@ def usearch():
         return redirect(url_for('auth.login'))  # Redirect to login if not logged in
 
     username = session['user']
-    user_data = collection.find_one({"username": username})
+    user_data = get_collection().find_one({"username": username})  # Access MongoDB collection via get_collection
 
     # Extract user information from MongoDB
     user_info = {
