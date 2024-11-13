@@ -1,6 +1,6 @@
 import tweepy
 from flask import Blueprint, render_template, session, redirect, url_for, request
-from app import collection  # Import the MongoDB collection
+from app.db import get_collection  # Import the MongoDB collection
 
 # Define the 'follow' blueprint
 follow_bp = Blueprint('follow', __name__)
@@ -55,7 +55,7 @@ def follow():
         return redirect(url_for('auth.login'))
 
     username = session['user']
-    user_data = collection.find_one({"username": username})
+    user_data = get_collection().find_one({"username": username})
 
     if request.method == 'POST':
         target_username = request.form['target_username']
