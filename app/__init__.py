@@ -38,8 +38,20 @@ app.register_blueprint(retweet_bp, url_prefix='/retweet') # Register retweet blu
 app.register_blueprint(tsearch_bp,url_prefix='/tsearch') # Register tsearch blueprint
 app.register_blueprint(followgp_bp,url_prefix='/followgp') #Register followgp blueprint
 
+# Define a route for the root URL '/'
+@app.route('/')
+def home():
+    # Redirect user to the login page if not authenticated
+    # Or to the dashboard if authenticated
+    if 'user' in session:
+        return redirect(url_for('dashboard.dashboard'))  # Redirect to dashboard if logged in
+    return redirect(url_for('auth.home'))  # Redirect to login page if not logged in
+
 # Empty favicon route to prevent 404 errors
 @app.route('/favicon.ico')
 def favicon():
     return "", 204  # Return an empty response with a 204 No Content status
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
