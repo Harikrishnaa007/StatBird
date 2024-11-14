@@ -103,6 +103,7 @@
             gap: 20px;
             justify-content: center;
             align-items: center;
+            margin-bottom: 30px;
         }
 
         /* Action Box Styles */
@@ -148,6 +149,26 @@
 
         .action-box.post {
             background-color: #1da1f2;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 220px;
+                padding: 15px;
+            }
+
+            .form-container {
+                padding: 15px;
+            }
+
+            .form-container textarea, .form-container button {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
