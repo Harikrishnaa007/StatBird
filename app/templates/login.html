@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - Stat Bird</title>
     <style>
         /* Reset default margins and padding */
         * {
@@ -15,30 +15,39 @@
         /* Body styling */
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6c5ce7, #00b894);
+            background: linear-gradient(135deg, #9702ed, #1dd0d3); /* Gradient Background */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            flex-direction: column;
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 400px;  /* Adjust logo size */
+            height: auto;
+            margin-bottom: 10px;
         }
 
         /* Container for the form */
         .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-color: #f5f1eb; /* Light Beige */
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
         }
 
         /* Heading styling */
         h1 {
-            color: #333;
+            color: #2d2a29; /* Dark Black */
             margin-bottom: 20px;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -47,25 +56,26 @@
         ul {
             list-style-type: none;
             margin-bottom: 20px;
+            padding: 0;
         }
 
         .error {
             color: white;
-            background-color: #e74c3c;
+            background-color: #e74c3c; /* Red */
             border: 1px solid #c0392b;
             padding: 12px;
             border-radius: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 600;
         }
 
         .success {
             color: white;
-            background-color: #2ecc71;
-            border: 1px solid #27ae60;
+            background-color: #27ae60; /* Green */
+            border: 1px solid #2ecc71;
             padding: 12px;
             border-radius: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 600;
         }
 
@@ -73,20 +83,20 @@
         label {
             display: block;
             text-align: left;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-size: 16px;
             font-weight: 500;
-            color: #333;
+            color: #2d2a29; /* Black */
         }
 
         input[type="text"], input[type="password"] {
             width: 100%;
             padding: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border: 1px solid #ddd;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 16px;
-            background-color: #f9f9f9;
+            background-color: #fafafa;
             transition: 0.3s ease;
         }
 
@@ -103,26 +113,27 @@
             background-color: #6c5ce7;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         button:hover {
             background-color: #5e4bb0;
+            transform: translateY(-3px);
         }
 
         /* Registration link */
         p {
             font-size: 16px;
-            color: #333;
-            margin-top: 20px;
+            color: #2d2a29; /* Black */
+            margin-top: 25px;
         }
 
         p a {
-            color: #6c5ce7;
+            color: #6c5ce7; /* Violet */
             text-decoration: none;
             font-weight: 600;
         }
@@ -132,10 +143,6 @@
         }
 
         /* Animation for the form container */
-        .container {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -149,6 +156,9 @@
     </style>
 </head>
 <body>
+
+    <!-- Logo Image -->
+    <img src="https://imgur.com/Z8GjP9X" alt="Stat Bird Logo" class="logo">
 
     <div class="container">
         <h1>Login</h1>
@@ -166,10 +176,10 @@
 
         <form action="{{ url_for('auth.login') }}" method="POST">
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required><br><br>
+            <input type="text" name="username" id="username" required><br>
 
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required><br><br>
+            <input type="password" name="password" id="password" required><br>
 
             <button type="submit">Login</button>
         </form>
