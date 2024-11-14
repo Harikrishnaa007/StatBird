@@ -5,65 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Reset */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #9e01ff, #0cafe5);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
-        h1 {
-            text-align: center;
             color: #333;
         }
+
+        /* Container styling */
+        .container {
+            background-color: #c9d7e4;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        /* Keyframe for container animation */
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Title styling */
+        h1 {
+            text-align: center;
+            color: #4c4bfc;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
             color: #333;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 6px;
         }
         input[type="text"], input[type="password"], input[type="email"] {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0 10px 0;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: #f9f9fc;
         }
+
+        /* Input focus effect */
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+            border-color: #7a5fff;
+            outline: none;
+            box-shadow: 0 0 10px rgba(122, 95, 255, 0.3);
+        }
+
+        /* Button styling */
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            padding: 12px;
+            background: linear-gradient(135deg, #4c4bfc, #7a5fff);
             color: white;
+            font-weight: bold;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 1rem;
             cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 5px 15px rgba(122, 95, 255, 0.3);
         }
         button:hover {
-            background-color: #0056b3;
+            background: linear-gradient(135deg, #7a5fff, #4c4bfc);
         }
+
+        /* Flash messages */
         .flashes {
             list-style-type: none;
             padding: 0;
+            margin-bottom: 15px;
         }
         .flashes li {
-            background-color: #f8d7da;
             padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
             margin-bottom: 10px;
-            border-radius: 5px;
-            color: #721c24;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
         .flashes li.success {
             background-color: #d4edda;
@@ -72,6 +114,16 @@
         .flashes li.error {
             background-color: #f8d7da;
             color: #721c24;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
@@ -94,51 +146,43 @@
         <form action="{{ url_for('auth.register') }}" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username" required><br>
+                <input type="text" name="username" id="username" required>
             </div>
-
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" required><br>
+                <input type="password" name="password" id="password" required>
             </div>
-
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required><br>
+                <input type="email" name="email" id="email" required>
             </div>
-
             <div class="form-group">
                 <label for="bearer_token">Bearer Token (v2):</label>
-                <input type="text" name="bearer_token" id="bearer_token" required><br>
+                <input type="text" name="bearer_token" id="bearer_token" required>
             </div>
-
             <div class="form-group">
                 <label for="tuser">Twitter User Name:</label>
-                <input type="text" name="tuser" id="tuser" required><br>
+                <input type="text" name="tuser" id="tuser" required>
             </div>
-
             <div class="form-group">
                 <label for="access_t">Access Token:</label>
-                <input type="text" name="access_t" id="access_t" required><br>
+                <input type="text" name="access_t" id="access_t" required>
             </div>
-
             <div class="form-group">
                 <label for="access_tsec">Access Token Secret:</label>
-                <input type="text" name="access_tsec" id="access_tsec" required><br>
+                <input type="text" name="access_tsec" id="access_tsec" required>
             </div>
-
             <div class="form-group">
                 <label for="api_key">API Key:</label>
-                <input type="text" name="api_key" id="api_key" required><br>
+                <input type="text" name="api_key" id="api_key" required>
             </div>
-
             <div class="form-group">
                 <label for="api_keysec">API Secret Key:</label>
-                <input type="text" name="api_keysec" id="api_keysec" required><br>
+                <input type="text" name="api_keysec" id="api_keysec" required>
             </div>
-
             <button type="submit">Register</button>
         </form>
+        <p>Back to <a href="{{ url_for('auth.login') }}">Login</a>.</p>
     </div>
 
 </body>
