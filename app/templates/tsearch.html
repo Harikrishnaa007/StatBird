@@ -4,25 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tweet Search</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Reset default margin and padding */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
+            box-sizing: border-box;
         }
 
-        /* Sidebar Styles */
+        /* Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #6a11cb, #2575fc);
+            display: flex;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Sidebar Styling */
         .sidebar {
             width: 250px;
             height: 100vh;
-            background-color: #2c3e50;
-            color: white;
+            background-color: #2e3b4e;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 15px;
+            color: white;
+            position: fixed;
         }
 
         .sidebar .nav-links {
@@ -35,71 +45,93 @@
             display: flex;
             align-items: center;
             color: white;
-            padding: 10px;
+            padding: 12px;
             text-decoration: none;
             border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
 
         .sidebar a:hover {
-            background-color: #34495e;
+            background-color: #5f6a7c;
         }
 
         .sidebar .icon {
             margin-right: 10px;
-            font-size: 18px;
+            font-size: 20px;
         }
 
-        /* Content Styles */
+        /* Main content styles */
         .content {
-            margin-left: 270px;
-            padding: 20px;
             flex-grow: 1;
+            margin-left: 270px;
+            padding: 40px;
+            background: #f8f8f8;
+            color: #333;
+            transition: margin-left 0.3s ease;
         }
 
+        /* Header Styles */
         .header {
-            background-color: #34495e;
+            background-color: #1f2a37;
             color: white;
             padding: 15px;
-            font-size: 24px;
+            font-size: 26px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
+        /* Form container */
         .form-container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .form-container input, .form-container button {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             margin: 10px 0;
-            border-radius: 4px;
+            border-radius: 8px;
             border: 1px solid #ddd;
         }
 
+        .form-container input {
+            background-color: #f1f1f1;
+        }
+
         .form-container button {
-            background-color: #e74c3c;
+            background-color: #4CAF50;
             color: white;
+            border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
         .form-container button:hover {
-            background-color: #c0392b;
+            background-color: #45a049;
         }
 
+        .form-container label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* Error Styling */
         .error {
             color: red;
             font-size: 14px;
+            margin-bottom: 15px;
         }
 
+        /* Results Section */
         .results-container {
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .results-container ul {
@@ -108,17 +140,44 @@
         }
 
         .results-container li {
-            background-color: #ecf0f1;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
+            background-color: #eaf2f8;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
+        .results-container li strong {
+            font-weight: bold;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 220px;
+                padding: 20px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -151,7 +210,7 @@
         </div>
     </div>
 
-    <!-- Content Section -->
+    <!-- Main Content -->
     <div class="content">
         <div class="header">
             Search Tweets
